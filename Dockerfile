@@ -12,6 +12,7 @@ RUN \
     ln -s /etc/nginx/sites-available/kainoadrost /etc/nginx/sites-enabled && \
     rm /etc/nginx/sites-enabled/default && \
     cp systemctl3.py /usr/bin/systemctl && \
+    chmod +x /usr/bin/systemctl && \
     systemctl start kainoadrost && \
     systemctl enable kainoadrost && \
     systemctl restart nginx
