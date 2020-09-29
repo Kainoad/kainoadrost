@@ -15,10 +15,11 @@ RUN \
     chmod +x /usr/bin/systemctl && \
     systemctl start kainoadrost && \
     systemctl enable kainoadrost && \
-    systemctl restart nginx && \
-    certbot --nginx --non-interactive --agree-tos -m developer2334@gmail.com -d kainoadrost.com -d www.kainoadrost.com && \
-    (crontab -l ; echo "1 1 1 * * certbot renew") | crontab -
+    systemctl restart nginx
 EXPOSE 80
 EXPOSE 443
+RUN \
+    certbot --nginx --non-interactive --agree-tos -m developer2334@gmail.com -d kainoadrost.com -d www.kainoadrost.com && \
+    (crontab -l ; echo "1 1 1 * * certbot renew") | crontab -
 
 CMD ["systemctl"]
