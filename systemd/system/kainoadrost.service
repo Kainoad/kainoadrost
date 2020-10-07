@@ -3,7 +3,7 @@ Description=uWSGI instance to serve kainoadrost
 After=network.target
 
 [Service]
-User=root
+User=websrv_user
 Group=www-data
 WorkingDirectory=/srv/kainoadrost
 ExecStart=/usr/local/bin/uwsgi --ini kainoadrost.ini
