@@ -10,8 +10,8 @@ def hello():
 
 @app.route("/git-pull")
 def git_pull():
-    subprocess.Popen(["nohup", "/bin/bash", "git_fetch_pull.sh"])
-    return "<h1 style='color:blue'>Pulling from git repo</h1>"
+    result = subprocess.run(['git_fetch_pull.sh'], stdout=subprocess.PIPE)
+    return "<h1 style='color:blue'>" + str(result.stdout.decode('utf-8')) + "||||" + str(result.stderr.decode('utf-8')) + "</h1>"
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
