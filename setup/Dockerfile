@@ -10,18 +10,18 @@ COPY . .
 RUN \
     apt-get update && \
     apt-get install -y nginx python3 python3-pip certbot python-certbot-nginx cron git && \
-    python3 -m pip install -r requirements.txt
+    python3 -m pip install -r setup/requirements.txt
 
 # Configure software and files
 RUN \
-    cp systemd/system/kainoadrost.service /lib/systemd/system && \
-    cp nginx/sites-available/kainoadrost /etc/nginx/sites-available && \
+    cp setup/systemd/system/kainoadrost.service /lib/systemd/system && \
+    cp setup/nginx/sites-available/kainoadrost /etc/nginx/sites-available && \
     ln -s /etc/nginx/sites-available/kainoadrost /etc/nginx/sites-enabled && \
     rm /etc/nginx/sites-enabled/default && \
-    cp systemctl3.py /usr/bin/systemctl && \
+    cp setup/systemctl3.py /usr/bin/systemctl && \
     chmod +x /usr/bin/systemctl && \
     mkdir -p /var/log/uwsgi && \
-    chmod +x git_fetch_pull.sh
+    chmod +x src/scripts/git_fetch_pull.sh
 #     certbot --nginx --non-interactive --agree-tos -m developer2334@gmail.com -d kainoadrost.com -d www.kainoadrost.com && \
 #     (crontab -l ; echo "1 1 1 * * certbot renew") | crontab -
 
