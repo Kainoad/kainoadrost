@@ -1,5 +1,7 @@
 #!/bin/bash
 
+read -p 'Github webhook secret: ' secret
+echo $secret > github_secret
 apt update
 apt install -y apt-transport-https ca-certificates curl software-properties-common gnupg2
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -

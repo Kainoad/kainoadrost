@@ -21,7 +21,8 @@ RUN \
     cp setup/systemctl3.py /usr/bin/systemctl && \
     chmod +x /usr/bin/systemctl && \
     mkdir -p /var/log/uwsgi && \
-    chmod +x src/scripts/git_fetch_pull.sh
+    chmod +x src/scripts/git_fetch_pull.sh && \
+    cp setup/secret src
 #     certbot --nginx --non-interactive --agree-tos -m developer2334@gmail.com -d kainoadrost.com -d www.kainoadrost.com && \
 #     (crontab -l ; echo "1 1 1 * * certbot renew") | crontab -
 
