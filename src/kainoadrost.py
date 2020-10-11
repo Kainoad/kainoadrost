@@ -1,6 +1,7 @@
 import subprocess
 import hmac
 import hashlib
+import json
 
 from flask import Flask, render_template, request, abort
 
@@ -16,7 +17,7 @@ def git_pull():
         abort(400) # bad request if no header present
     
     signature = request.headers['X-Hub-Signature']
-    payload = request.data
+    payload = request.get_data()
 
     with open('github_secret', 'r') as secret_file:
         webhook_secret = secret_file.read().replace("\n", "")
