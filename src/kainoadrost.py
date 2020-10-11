@@ -33,13 +33,10 @@ def git_pull():
     if not hmac.compare_digest(digest, signature):
         abort(400) # if the signatures don't match, bad request not from GitHub
 
-
+    # do the following if signatures match
     result = subprocess.run(['./scripts/git_fetch_pull.sh'], stdout=subprocess.PIPE)
-    f = open("test.txt", "a")
-    f.write(str(request.get_data()))
-    f.close()
 
-    return "<h1 style='color:blue'>" + str(result.stdout.decode('utf-8')) + "</h1>"
+    return str(result.stdout.decode('utf-8'))
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
